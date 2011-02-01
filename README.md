@@ -10,6 +10,7 @@ Apresentar o Guice, enquanto contentor de DI actual para a plataforma Java.
 Programa
 
 Conceitos de IoC e DI:
+
 * Motivação, caracterização e utilização;
 * Formas de injecção;
 * Formas de resolução e dependência de contexto.
