@@ -1,7 +1,8 @@
-package naivecontainer;
+package naivecontainer.exceptions;
+
 
 @SuppressWarnings("serial")
-public class InvalidConstructorException extends NaiveContainerDesignException {
+public class InvalidConstructorException extends NaiveContainerConfigurationException {
 
 	private final Class<?> _klass;
 	

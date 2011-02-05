@@ -3,6 +3,10 @@ package naivecontainer;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import naivecontainer.exceptions.InvalidConstructorException;
+import naivecontainer.exceptions.NaiveContainerConfigurationException;
+import naivecontainer.exceptions.UnexpectedException;
+
 /** Decorates Class<T> with some context specific methods */
 
 public class ClassDecorator<T> {
@@ -14,7 +18,7 @@ public class ClassDecorator<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public ClassDecorator(Class<T> klass) throws NaiveContainerDesignException{
+	public ClassDecorator(Class<T> klass) throws NaiveContainerConfigurationException{
 		_klass = klass;
 		Constructor<T>[] ctors = (Constructor<T>[]) klass.getConstructors();
 		if(ctors.length != 1) throw new InvalidConstructorException(klass);

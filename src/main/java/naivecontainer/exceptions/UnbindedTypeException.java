@@ -1,4 +1,5 @@
-package naivecontainer;
+package naivecontainer.exceptions;
+
 
 @SuppressWarnings("serial")
 public class UnbindedTypeException extends NaiveContainerConfigurationException {

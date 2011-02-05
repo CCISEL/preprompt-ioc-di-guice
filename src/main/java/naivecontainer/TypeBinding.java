@@ -2,6 +2,8 @@ package naivecontainer;
 
 import java.lang.reflect.InvocationTargetException;
 
+import naivecontainer.exceptions.NaiveContainerConfigurationException;
+
 /** A binding from a dependency type into another type */
 public class TypeBinding<T> implements Binding<T> {
 
@@ -19,7 +21,7 @@ public class TypeBinding<T> implements Binding<T> {
 	}
 
 	@Override
-	public T getInstance(Injector injector) throws UnbindedTypeException, NaiveContainerDesignException, InvocationTargetException {
+	public T getInstance(Injector injector) throws NaiveContainerConfigurationException, InvocationTargetException {
 		return injector.getInstanceOfExactType(_concrete);
 	}	
 }

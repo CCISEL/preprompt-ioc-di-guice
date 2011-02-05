@@ -5,6 +5,9 @@ import java.lang.reflect.Modifier;
 import java.util.Hashtable;
 import java.util.Map;
 
+import naivecontainer.exceptions.NaiveContainerConfigurationException;
+import naivecontainer.exceptions.UnbindedTypeException;
+
 /* A simple injector */
 public class SimpleInjector implements Injector {
 	
@@ -27,7 +30,7 @@ public class SimpleInjector implements Injector {
 	}
 
 	@Override
-	public <T> T getInstanceOfExactType(Class<T> type) throws NaiveContainerDesignException, InvocationTargetException, UnbindedTypeException {
+	public <T> T getInstanceOfExactType(Class<T> type) throws NaiveContainerConfigurationException, InvocationTargetException {
 		ClassDecorator<T> dec = new ClassDecorator<T>(type);
 		Class<?>[] deps = dec.getDependencies();
 		Object[] objs = new Object[deps.length];
@@ -39,7 +42,7 @@ public class SimpleInjector implements Injector {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getInstance(Class<T> type) throws UnbindedTypeException, NaiveContainerDesignException, InvocationTargetException {
+	public <T> T getInstance(Class<T> type) throws NaiveContainerConfigurationException, InvocationTargetException {
 		Binding<T> b = (Binding<T>) _bindings.get(type);
 		if(b != null) 
 			return b.getInstance(this);

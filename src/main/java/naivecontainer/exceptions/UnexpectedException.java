@@ -1,4 +1,4 @@
-package naivecontainer;
+package naivecontainer.exceptions;
 
 @SuppressWarnings("serial")
 public class UnexpectedException extends RuntimeException {
