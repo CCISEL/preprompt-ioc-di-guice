@@ -2,6 +2,10 @@ package naivecontainer;
 
 import static org.junit.Assert.assertEquals;
 
+import java.lang.reflect.InvocationTargetException;
+
+import naivecontainer.exceptions.NaiveContainerConfigurationException;
+
 import org.junit.Test;
 
 public class NaiveContainerTestsUsingFluentConfiguration {
@@ -65,5 +69,27 @@ public class NaiveContainerTestsUsingFluentConfiguration {
 		DependantWithValueDependency dep = injector.getInstance(DependantWithValueDependency.class);
 		assertEquals(dep.getInt1(), 13);
 		assertEquals(dep.getInt2(), 13);
+	}
+	
+	@Test
+	public void can_inject_strings() throws Exception {
+		Injector injector = new SimpleInjector(SimpleConfiguration.with()
+				.dependency(String.class).bindedTo("hello"));
+		
+		assertEquals("hello",injector.getInstance(String.class));
+		assertEquals("hello",injector.getInstance(String.class));		
+	}
+	
+	public static class ClassWithSingletonInstance{}
+	
+	@Test
+	public void singleton_binding_always_produces_the_same_instance() throws NaiveContainerConfigurationException, InvocationTargetException{
+		Injector injector = new SimpleInjector(SimpleConfiguration.with()
+				.dependency(ClassWithSingletonInstance.class).bindedToSingleton(ClassWithSingletonInstance.class));
+		
+		assertEquals(
+				injector.getInstance(ClassWithSingletonInstance.class),
+				injector.getInstance(ClassWithSingletonInstance.class)
+				);
 	}
 }
