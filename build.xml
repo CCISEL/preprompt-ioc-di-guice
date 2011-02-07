@@ -1,0 +1,17 @@
+<project name="progs" default="test" basedir=".">
+
+  <description>
+    
+  </description>
+  
+  <target name="clean">
+	<ant antfile="build.xml" target="clean" dir="naivecontainer" />
+	<ant antfile="build.xml" target="clean" dir="guicefacts"/>
+  </target>
+
+  <target name="test">
+	<ant antfile="build.xml" target="test" dir="naivecontainer" />
+	<ant antfile="build.xml" target="test" dir="guicefacts"/>
+  </target>
+  
+</project>
