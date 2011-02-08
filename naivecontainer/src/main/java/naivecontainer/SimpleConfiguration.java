@@ -27,26 +27,33 @@ public class SimpleConfiguration implements InjectorConfiguration {
 		return new SimpleConfiguration();
 	}
 	
-	public class Dependency<T>{
-		public final Class<T> _klass;
-		public Dependency(Class<T> klass){
-			_klass = klass;
+	public class DependencyBinding<T>{
+		public Dependency<T> _dependency;
+		public DependencyBinding(Class<T> klass){
+			_dependency = new Dependency<T>(klass);
 		}
+		
+		public DependencyBinding<T> withName(String name){
+			_dependency = new NamedDependency<T>(name, _dependency.getType());
+			return this;
+		}
+		
 		public SimpleConfiguration to(Class<? extends T> t){
-			_bindings.add(new TypeBinding<T>(_klass, t));
+			_bindings.add(new TypeBinding<T>(_dependency, t));
 			return SimpleConfiguration.this;
 		}
 		public <K extends T> SimpleConfiguration to(K k){
-			_bindings.add(new InstanceBinding<T>(_klass, k));
+			_bindings.add(new InstanceBinding<T>(_dependency, k));
 			return SimpleConfiguration.this;
 		}
 		public SimpleConfiguration toSingleton(Class<? extends T> k){
-			_bindings.add(new SingletonBinding<T>(_klass, k));
+			_bindings.add(new SingletonBinding<T>(_dependency, k));
 			return SimpleConfiguration.this;
 		}
 	}
 	
-	public <T> Dependency<T> bind(Class<T> klass){
-		return new Dependency<T>(klass);
+	public <T> DependencyBinding<T> bind(Class<T> klass){
+		return new DependencyBinding<T>(klass);
 	}
+	
 }

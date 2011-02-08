@@ -1,5 +1,6 @@
 package naivecontainer;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -25,8 +26,22 @@ public class ClassDecorator<T> {
 		_ctor = ctors[0];
 	}
 	
-	public Class<?>[] getDependencies(){
-		return _ctor.getParameterTypes();
+	public Dependency<?>[] getDependencies(){
+		
+		Annotation[][] annots = _ctor.getParameterAnnotations();
+		Class<?>[] types = _ctor.getParameterTypes();
+		Dependency<?>[] ret = new Dependency<?>[types.length];
+		for(int i = 0 ; i<ret.length ; ++i){
+			String name = null;
+			for(int j = 0 ; j<annots[i].length ; ++j){
+				if(annots[i][j].annotationType().equals(Named.class)){
+					name = ((Named)annots[i][j]).value();
+					break;
+				}
+			}
+			ret[i] = name == null ? new Dependency(types[i]) : new NamedDependency(name, types[i]);
+		}
+		return ret;
 	}
 	
 	public T newInstance(Object[] args) throws InvocationTargetException {

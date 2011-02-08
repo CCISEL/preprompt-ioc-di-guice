@@ -3,16 +3,21 @@ package naivecontainer;
 /** A binding from a dependency type into an instance */
 public class InstanceBinding<T> implements Binding<T> {
 
-	public final Class<T> _key;
+	public final Dependency<T> _key;
 	public final T  _instance;
 	
-	public InstanceBinding(Class<T> key, T instance){
+	public InstanceBinding(Dependency<T> key, T instance){
 		_key = key;
+		_instance = instance;
+	}
+	
+	public InstanceBinding(Class<T> klass, T instance){
+		_key = new Dependency<T>(klass);
 		_instance = instance;
 	}
 
 	@Override
-	public Class<T> getType() {
+	public Dependency<T> getDependency() {
 		return _key;
 	}
 

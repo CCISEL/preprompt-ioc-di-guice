@@ -6,7 +6,7 @@ import naivecontainer.exceptions.NaiveContainerConfigurationException;
 
 public class SingletonBinding<T> extends TypeBinding<T>{
 	
-	public SingletonBinding(Class<T> key, Class<? extends T> concrete){
+	public SingletonBinding(Dependency<T> key, Class<? extends T> concrete){
 		super(key,concrete);
 	}
 
