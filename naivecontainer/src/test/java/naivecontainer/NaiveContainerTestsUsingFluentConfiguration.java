@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.InvocationTargetException;
 
-import naivecontainer.exceptions.NaiveContainerConfigurationException;
+import naivecontainer.exceptions.NaiveContainerException;
 
 import org.junit.Test;
 
@@ -83,7 +83,7 @@ public class NaiveContainerTestsUsingFluentConfiguration {
 	public static class ClassWithSingletonInstance{}
 	
 	@Test
-	public void singleton_binding_always_produces_the_same_instance() throws NaiveContainerConfigurationException, InvocationTargetException{
+	public void singleton_binding_always_produces_the_same_instance() throws InvocationTargetException, NaiveContainerException{
 		Injector injector = new SimpleInjector(SimpleConfiguration.with()
 				.bind(ClassWithSingletonInstance.class).toSingleton(ClassWithSingletonInstance.class));
 		

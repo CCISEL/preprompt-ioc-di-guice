@@ -8,6 +8,7 @@ public class UnbindedTypeException extends NaiveContainerConfigurationException 
 	public Class<?> getUnbindedType(){ return _type;}
 
 	public UnbindedTypeException(Class<?> type) {
+		super("unbinded type");
 		_type = type;
 	}
 }

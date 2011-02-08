@@ -26,6 +26,7 @@ public class ClassDecorator<T> {
 		_ctor = ctors[0];
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Dependency<?>[] getDependencies(){
 		
 		Annotation[][] annots = _ctor.getParameterAnnotations();

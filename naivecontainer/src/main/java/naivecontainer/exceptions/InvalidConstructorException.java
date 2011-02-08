@@ -9,6 +9,7 @@ public class InvalidConstructorException extends NaiveContainerConfigurationExce
 	public Class<?> getInvalidClass(){ return _klass;}
 
 	public InvalidConstructorException(Class<?> klass) {
+		super("");
 		_klass = klass;
 	}
 	

@@ -1,10 +1,10 @@
 package naivecontainer;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.InvocationTargetException;
 
-import naivecontainer.exceptions.NaiveContainerConfigurationException;
+import naivecontainer.exceptions.NaiveContainerException;
 
 import org.junit.Test;
 
@@ -25,7 +25,7 @@ public class NamedDependenciesTests {
 	}
 	
 	@Test
-	public void test() throws NaiveContainerConfigurationException, InvocationTargetException{
+	public void test() throws InvocationTargetException, NaiveContainerException{
 		
 		Injector injector = new SimpleInjector(SimpleConfiguration.with()
 				.bind(String.class).withName("s1").to("string1")

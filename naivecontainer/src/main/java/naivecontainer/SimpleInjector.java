@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 import naivecontainer.exceptions.NaiveContainerConfigurationException;
+import naivecontainer.exceptions.NaiveContainerException;
 import naivecontainer.exceptions.UnbindedTypeException;
 
 /* A simple injector */
@@ -15,7 +16,7 @@ public class SimpleInjector implements Injector {
 	
 	public SimpleInjector(){}
 	
-	public SimpleInjector(InjectorConfiguration cfg){
+	public SimpleInjector(InjectorConfiguration cfg) throws NaiveContainerException{
 		cfg.configure(this);
 	}
 	
