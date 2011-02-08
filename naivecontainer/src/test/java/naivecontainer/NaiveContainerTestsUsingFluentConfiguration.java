@@ -30,8 +30,8 @@ public class NaiveContainerTestsUsingFluentConfiguration {
 	@Test
 	public void can_inject() throws Exception {
 		Injector injector = new SimpleInjector(SimpleConfiguration.with()
-			.dependency(Service1.class).bindedTo(Service1Impl1.class)
-			.dependency(Service2.class).bindedTo(Service2Impl1.class));
+			.bind(Service1.class).to(Service1Impl1.class)
+			.bind(Service2.class).to(Service2Impl1.class));
 		
 		Dependant dep = injector.getInstance(Dependant.class);
 		assertEquals(dep.getService1().getClass(), Service1Impl1.class);
@@ -42,8 +42,8 @@ public class NaiveContainerTestsUsingFluentConfiguration {
 	public void can_inject_singletons() throws Exception {
 		Service2 srv2 = new Service2Impl1();
 		Injector injector = new SimpleInjector(SimpleConfiguration.with()
-				.dependency(Service1.class).bindedTo(Service1Impl1.class)
-				.dependency(Service2.class).bindedTo(srv2));
+				.bind(Service1.class).to(Service1Impl1.class)
+				.bind(Service2.class).to(srv2));
 		
 		Dependant dep = injector.getInstance(Dependant.class);
 		assertEquals(dep.getService1().getClass(), Service1Impl1.class);
@@ -65,7 +65,7 @@ public class NaiveContainerTestsUsingFluentConfiguration {
 	@Test
 	public void can_inject_value_types() throws Exception {		
 		Injector injector = new SimpleInjector(SimpleConfiguration.with()
-			.dependency(int.class).bindedTo(13));
+			.bind(int.class).to(13));
 		DependantWithValueDependency dep = injector.getInstance(DependantWithValueDependency.class);
 		assertEquals(dep.getInt1(), 13);
 		assertEquals(dep.getInt2(), 13);
@@ -74,7 +74,7 @@ public class NaiveContainerTestsUsingFluentConfiguration {
 	@Test
 	public void can_inject_strings() throws Exception {
 		Injector injector = new SimpleInjector(SimpleConfiguration.with()
-				.dependency(String.class).bindedTo("hello"));
+				.bind(String.class).to("hello"));
 		
 		assertEquals("hello",injector.getInstance(String.class));
 		assertEquals("hello",injector.getInstance(String.class));		
@@ -85,7 +85,7 @@ public class NaiveContainerTestsUsingFluentConfiguration {
 	@Test
 	public void singleton_binding_always_produces_the_same_instance() throws NaiveContainerConfigurationException, InvocationTargetException{
 		Injector injector = new SimpleInjector(SimpleConfiguration.with()
-				.dependency(ClassWithSingletonInstance.class).bindedToSingleton(ClassWithSingletonInstance.class));
+				.bind(ClassWithSingletonInstance.class).toSingleton(ClassWithSingletonInstance.class));
 		
 		assertEquals(
 				injector.getInstance(ClassWithSingletonInstance.class),
