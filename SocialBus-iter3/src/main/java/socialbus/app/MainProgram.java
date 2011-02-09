@@ -20,7 +20,8 @@ import socialbus.core.SocialParserNotifier;
 
 public class MainProgram {
 	
-	static final String CFG_FILE = "D:\\MyFolder\\ISEL\\Cursos\\Pamp\\PrePrompt\\guice\\preprompt-ioc-di-guice\\SocialBus-iter3\\cfg\\SocialBusCfg.xml";
+	static final String CFG_TWITTER = "D:\\MyFolder\\ISEL\\Cursos\\Pamp\\PrePrompt\\guice\\preprompt-ioc-di-guice\\SocialBus-iter3\\cfg\\SocialBusCfg.xml";
+	static final String CFG_EMAIL = "D:\\MyFolder\\ISEL\\Cursos\\Pamp\\PrePrompt\\guice\\preprompt-ioc-di-guice\\SocialBus-iter3\\cfg\\SocialBusCfgEmail.xml";
 	
 	public static void main(String [] args) 
 		throws InterruptedException, 
@@ -28,7 +29,7 @@ public class MainProgram {
 			InvocationTargetException, 
 			ParserConfigurationException, SAXException, IOException
 	{
-		InputStream in = new FileInputStream(CFG_FILE);
+		InputStream in = new FileInputStream(CFG_TWITTER);
 		Injector injector = new SimpleInjector(new XmlConfiguration(in));
 
 		SocialParserNotifier app = injector.getInstance(SocialParserNotifier.class);
