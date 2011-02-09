@@ -90,8 +90,11 @@ public class XmlConfiguration implements InjectorConfiguration {
 			}
 			if(fromClass.equals(String.class)){
 				injector.addBinding(new InstanceBinding(dep, toInstance));
+			}else if(fromClass.equals(Integer.class)){
+				Integer i = Integer.valueOf(toInstance);
+				injector.addBinding(new InstanceBinding(dep, i));
 			}else{
-				injector.addBinding(new InstanceBinding(dep, Integer.getInteger(toInstance)));
+				throw new NaiveContainerXmlConfigurationException(String.format("Instances of type %s are not supported",fromClass.getName()));
 			}
 		}
 	}

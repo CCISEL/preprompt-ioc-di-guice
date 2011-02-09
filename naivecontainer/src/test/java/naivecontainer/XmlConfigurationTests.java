@@ -23,12 +23,17 @@ public class XmlConfigurationTests {
 		
 		private final String _s1;
 		private final String _s2;
+		private final int _i;
 		public String getS1(){return _s1;}
 		public String getS2(){return _s2;}
+		public int getInteger(){
+			return _i;
+		}
 		
-		public Dependent(@Named("s1") String s1, @Named("s2") String s2, Service1 srv){
+		public Dependent(@Named("s1") String s1, @Named("s2") String s2, Service1 srv, Integer i){
 			_s1 = s1;
 			_s2 = s2;
+			_i = i;
 		}
 	}
 	
@@ -36,6 +41,7 @@ public class XmlConfigurationTests {
 			"<bindings>" +
 			"	<binding bind='java.lang.String' named='s1' toInstance='string1' />" +
 			"	<binding bind='java.lang.String' named='s2' toInstance='string2' />" +
+			"	<binding bind='java.lang.Integer' toInstance='123' />" +
 			"	<binding bind='naivecontainer.XmlConfigurationTests$Service1' to='naivecontainer.XmlConfigurationTests$Service1Impl1' />" +
 			"</bindings>";
 		
@@ -47,6 +53,7 @@ public class XmlConfigurationTests {
 		Dependent dep = injector.getInstance(Dependent.class);
 		assertEquals("string1", dep.getS1());
 		assertEquals("string2", dep.getS2());		
+		assertEquals(123, dep.getInteger());
 	}
 
 }
