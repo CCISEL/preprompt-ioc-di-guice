@@ -34,3 +34,21 @@
 
 ### 2ª parte - Configuração da aplicação SocialBus
 
+Nesta fase deverá obter alguns dados para configuração do canal de input - Facebook - e de output - EMail (preferencialmente Gmail).
+
+1. Entre na página do Facebook com a sua conta.
+
+2. Passe para a página http://developers.facebook.com/
+
+3. Clique em "Documentation"
+
+4. Clique em "Graph API"
+
+5. No menu do lado esquerdo "Objects" clique em "User"
+
+6. No exemplo clique em https://graph.facebook.com/me
+
+7. Da página obtida pode extrair os seguintes dados:
+   > * Na segunda linha em "id" obtém o seu **Uid**.
+   > * Do URL "https://graph.facebook.com/me?access_token=....." pode extrair o *access token* que aparece à frente de `me?access_token=`.
+
