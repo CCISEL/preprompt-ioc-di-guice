@@ -14,9 +14,13 @@ public class SimpleInjector implements Injector {
 	
 	private final Map<Dependency<?>, Binding<?>> _bindings = new Hashtable<Dependency<?>,Binding<?>>();	
 	
-	public SimpleInjector(){}
+	public SimpleInjector(){
+        Dependency<Injector> dep = new Dependency<Injector>(Injector.class);
+        _bindings.put(dep, new InstanceBinding<Injector>(dep, this));
+    }
 	
 	public SimpleInjector(InjectorConfiguration cfg) throws NaiveContainerException{
+        this();
 		cfg.configure(this);
 	}
 	

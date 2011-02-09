@@ -68,4 +68,10 @@ public class NaiveContainerTests {
 		assertEquals(dep.getInt2(), 13);
 	}
 	
+	@Test
+	public void can_inject_self() throws Exception {		
+		Injector injector = new SimpleInjector();
+		Injector dep = injector.getInstance(Injector.class);
+		assertNotNull(dep);
+	}
 }
