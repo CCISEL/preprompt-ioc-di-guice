@@ -2,6 +2,8 @@
 
 ## Exercício 1
 
+### 1ª parte - Setup dos projectos
+
 1. Crie uma pasta local como respositório dos projectos que irá desenvolver nesta sessão como o nome: **preprompt-ioc-di-guice**
 
 2. Faça download do repositório disponível em https://github.com/prompt/preprompt-ioc-di-guice/, para a localização criada na alínea anterior. Se tiver o utilitário Git poderá fazer: `git clone https://github.com/prompt/preprompt-ioc-di-guice.git`.
@@ -24,6 +26,11 @@
    > * *Ant buildfile*: o ficheiro `Exercicio-1\build.xml`
    > * *Select javac declaration to use to define project* - selecionar o item: **"javac" task to found in target "compile-test"**.
 
-9. Compile os projectos e é expectável que apenas o projecto SocialBus-Tests-iter1 apresente 19 erros de compilação por referência a tipos desconhecidos.
+9. Compile os projectos e é expectável que apenas o projecto **SocialBus-Tests-iter1** apresente 19 erros de compilação por referência a tipos desconhecidos. O projecto SocialBus-Main-iter1 deve compilar com sucesso.
 
-10. Corrija o problema anterior adicionado o projecto SocialBus-Main-iter1 à "*Build Path*" do projecto SocialBus-Tests-iter1.
+10. Corrija o problema anterior adicionado o projecto **SocialBus-Main-iter1** à "*Build Path*" do projecto **SocialBus-Tests-iter1**.
+
+11. Corra os testes unitários clicando sobre o package `socialbus.tests` e fazendo *Run As > JUnit Test*.
+
+### 2ª parte - Configuração da aplicação SocialBus
+
