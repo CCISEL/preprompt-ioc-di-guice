@@ -67,9 +67,56 @@ Agora irá usar os dados obtidos na 2ª parte, para configuração do canal de i
 
 5. Consulte a sua página do Facebook e identifique palavras chave comuns a vários posts. Altere a configuração do filtro usado por `socialbus.core.SocialParserNotifier` de modo a verificar o envio de emails referentes a outros posts.
 
-6. Pretende-se alterar a aplicação `socialbus.core.SocialParserNotifier` de modo a que no lugar de Emails passe a enviar *twitts* na conta *greatwacky*. Para tal: 
-  > * baseando-se na aplicação `javatwitter.app.TestTwitter` implemente um novo canal de output que coloque *twitts*  na conta *greatwacky*
+6. Pretende-se alterar a aplicação `socialbus.core.SocialParserNotifier` de modo a que no lugar de Emails passe a enviar *tweets* na conta *greatwacky*. Para tal: 
+  > * baseando-se na aplicação `javatwitter.app.TestTwitter` implemente um novo canal de output que coloque *tweets*  na conta *greatwacky*
   > * Implemente uma projecção - `IProjection` - que transforme Posts do Facebook numa String que não exceda os 140 caracteres permitidos nas mensagens do Twitter.
 
-7. Desenhe um teste unitário para a classe `socialbus.channel.fb.FbPostReader` que verifique aleitura correcta de novos posts, sem repetir posts que já tenham sido retornados anteriormente.
+7. Desenhe um teste unitário para a classe `socialbus.channel.fb.FbPostReader` que verifique a leitura correcta de novos posts, sem repetir posts que já tenham sido retornados anteriormente.
+
+## Exercício 2
+
+1. Seguindo os passos da 1ª parte do Exercício 1, adicione mais dois projectos ao Eclipse: **SocialBus-Main-iter2** e **SocialBus-Tests-iter2**, baseado no *Ant buildfile*: `Exercicio-2\build.xml`
+
+2. Adicione ao package `socialbus.app` uma classe com um `main` que implemente a mesma funcionalidade do exercício 1, 3ªparte, 4ª alínea.
+
+3. Modifique a classe anterior para que envie *tweets* no lugar de emails.
+
+## Exercício 3
+
+1.Seguindo os passos da 1ª parte do Exercício 1, adicione mais dois projectos ao Eclipse: **NaiveContainer-Main** e **NaiveContainer-Tests**, baseado no *Ant buildfile*: `naivecontainer\build.xml`
+
+2. Adicione o projecto **NaiveContainer-Main** ao *Build Path* do projecto **SocialBus-Main-iter2**.
+
+3. Defina um ficheiro de configuração em XML que concretize todas as dependências necessárias ao funcionamento de `SocialParserNotifier` com envio de Emails. Adicione a anotação `@Named` aos parâmetros de construção que precisem de ser injectados. Baseie-se no exemplo fornecido no teste unitário: `XmlConfigurationTests`.
+
+4. Altere a função main implementada no Exercício 2, para que passe a instanciar `SocialParserNotifier` através do injector de dependências **NaiveContainer** e baseado no ficheiro de configuração que definiu na alínea anterior.
+
+5. Defina um outro ficheiro de configuração em XML para o `SocialParserNotifier` que especifique o envio de "tweets".
+
+6. Teste a nova configuração da alínea 5, substituíndo na função `main` da alínea 4, o fichero de configuração usado.
+
+## Exercício 4
+
+1. Defina um ficheiro de configuração em Java que concretize todas as dependências necessárias ao funcionamento de `SocialParserNotifier` com envio de Emails. Baseie-se no exemplo fornecido no teste unitário: `NamedDependenciesTests`.
+
+2. Altere a função main implementada no Exercício 3, para que use o ficheiro de configuração que definiu na alínea anterior.
+
+3. Defina um ficheiro de configuração em Java que concretize todas as dependências necessárias ao funcionamento de `SocialParserNotifier` com envio de "tweets".
+
+2. Altere a função main, para que use o ficheiro de configuração que definiu na alínea anterior.
+
+
+## Exercício 5
+
+1. Copie a pasta `Exercicio-2` para uma nova pasta `Exercicio-5`.
+
+2. Seguindo os passos da 1ª parte do Exercício 1, adicione mais dois projectos ao Eclipse: **SocialBus-Main-iter5** e **SocialBus-Tests-iter5**, baseado no *Ant buildfile*: `Exercicio-5\build.xml`
+
+3. Defina um modulo Guice que concretize todas as dependências necessárias ao funcionamento de `SocialParserNotifier` com envio de Emails. Atenção que a anotação `@Named` refere-se agora ao package **Guice** e não **NaiveContainer**.
+
+4. Altere a função `main`, para que utilize o ficheiro de configuração que definiu na alínea anterior e o injector de dependências Guice.
+
+5. Defina um módulo Guice que concretize **apenas as dependências necessárias ao IOutputChannel** para envio de "tweets".
+
+6. Utilize o *override* de módulos para que o Guice use a combinação das configurações das alíneas 3 e 5.
 
