@@ -50,6 +50,12 @@ public class SimpleConfiguration implements InjectorConfiguration {
 			_bindings.add(new SingletonBinding<T>(_dependency, k));
 			return SimpleConfiguration.this;
 		}
+
+		public SimpleConfiguration toProvider(
+				Class<? extends Provider<? extends T>> providerType) {
+			_bindings.add(new ProviderBinding<T>(_dependency, providerType));
+			return SimpleConfiguration.this;
+		}
 	}
 	
 	public <T> DependencyBinding<T> bind(Class<T> klass){
