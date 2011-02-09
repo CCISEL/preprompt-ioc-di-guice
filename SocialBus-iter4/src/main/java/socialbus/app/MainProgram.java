@@ -29,12 +29,7 @@ public class MainProgram {
 	public static void main(String [] args) throws InterruptedException, NaiveContainerException, InvocationTargetException{
 		Injector injector = new SimpleInjector(new SocialBusTwitterConfiguration());
 		// Injector injector = new SimpleInjector(new SocialBusEmailConfiguration());
-		SocialParserNotifier social = injector.getInstance(SocialParserNotifier.class);
-		// run
-		social.start();
-		// block until the threadPool has finished shutting down,
-		// which indicates that all tasks have finished executing
-		social.awaitTermination(360000, TimeUnit.MILLISECONDS);
-		
+		SocialParserNotifier app = injector.getInstance(SocialParserNotifier.class);
+		app.run(360000);		
 	}
 }

@@ -28,6 +28,13 @@ public class SocialParserNotifier<S, R>{
 		this.filter = filter;
 		this.projection = projection;
 	}
+	public void run(int i) throws InterruptedException {
+		// run
+		this.start();
+		// block until the threadPool has finished shutting down,
+		// which indicates that all tasks have finished executing
+		this.awaitTermination(360000, TimeUnit.MILLISECONDS);		
+	}
 	public void start(){
 		threadPool.submit(new SocialTask());
 	}

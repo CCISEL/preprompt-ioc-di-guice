@@ -1,0 +1,20 @@
+<bindings>
+	<!-- IInputChannel -->
+	<binding bind='socialbus.core.IInputChannel' to='socialbus.channel.fb.FbPostsReader' />
+	<binding bind='java.lang.String' named='FbUid' toInstance='100002002677659' />
+	<binding bind='java.lang.String' named='FbGraphEp' toInstance='home' />
+	<binding bind='com.restfb.FacebookClient' to='socialbus.channel.fb.NamedDefaultFacebookClient' />
+	<binding bind='java.lang.String' named='FbAccessToken' toInstance='2227470867|2.xoRTRsZdL6RA6uX2_FpnQw__.3600.1297252800-100002002677659|yhsbzmHZ1rvLgYuKxugfOGLyT5w' />
+	<!-- IOutputChannel -->
+	<binding bind='socialbus.core.IOutputChannel' to='socialbus.channel.twitter.StatusSetter' />
+	<binding bind='java.lang.String' named='TwitterAccount' toInstance='greatwacky' />
+	<binding bind='java.lang.String' named='ConsumerKey' toInstance='FImbe0979Sowdv4cJgNJjg' />
+	<binding bind='java.lang.String' named='ConsumerSecret' toInstance='gx4xCzXSxAcIQQpcms5Gnu6gA3HDJj4hqAofsdkfTo' />
+	<!-- IFilter -->
+	<binding bind='socialbus.core.IFilter' to='socialbus.filters.PostContentFilter' />
+	<binding bind='java.lang.String' named='FilterKeyword' toInstance='noite' />
+	<!-- IProjection -->
+	<binding bind='socialbus.core.IProjection' to='socialbus.projection.PostToTwitterStatus' />
+	<!-- SocialParserNotifier parameters -->
+	<binding bind='java.lang.Integer' named='PeriodInMilis' toInstance='5000' />
+</bindings>
