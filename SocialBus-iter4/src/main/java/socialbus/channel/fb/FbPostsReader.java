@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import naivecontainer.Named;
+
 import socialbus.core.IInputChannel;
 
 import com.restfb.FacebookClient;
@@ -29,7 +31,7 @@ public class FbPostsReader implements IInputChannel<Post>{
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~   CONSTRUCTOR      ~~~~~~~~~~~~~~~~~~~~~~~   
 	//---------------------------------------------------------------------
 
-	public FbPostsReader(String uid, FacebookClient fbClient, String graphEndPoint) {
+	public FbPostsReader(@Named("FbUid") String uid, FacebookClient fbClient, @Named("FbGraphEp")String graphEndPoint) {
 		super();
 		this.uid = uid;
 		this.fbClient = fbClient;

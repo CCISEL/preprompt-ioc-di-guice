@@ -14,6 +14,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import naivecontainer.Named;
+
 import socialbus.core.IMailMessage;
 import socialbus.core.IOutputChannel;
 import socialbus.core.OutputChannelException;
@@ -38,7 +40,7 @@ public class MailSender extends Authenticator implements IOutputChannel<IMailMes
 	//---------------------------------------------------------------------
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~   CONSTRUCTOR      ~~~~~~~~~~~~~~~~~~~~~~~   
 	//---------------------------------------------------------------------
-	public MailSender(Properties props){
+	private MailSender(Properties props){
 		this.props = props;
 		if(props.getProperty("mail.transport.protocol") == null)
 			props.put("mail.transport.protocol", "smtp");
@@ -50,10 +52,14 @@ public class MailSender extends Authenticator implements IOutputChannel<IMailMes
 			props.put("mail.smtp.starttls.enable", "true");	
 
 	}
-	public MailSender(String fromMailUser, String pswd, String host, String recipientTo){
+	public MailSender(
+			@Named("MailUser") String fromMailUser, 
+			@Named("MailPasswd")String pswd, 
+			@Named("MailHost") String host, 
+			@Named("MailRecipientTo")String recipientTo){
 		this(fromMailUser, pswd, host, false, recipientTo);
 	}  
-	public MailSender(String fromMailUser, String pswd, String host, boolean debug, String recipientTo){
+	private MailSender(String fromMailUser, String pswd, String host, boolean debug, String recipientTo){
 		this(new Properties());
 		this.fromMailUser = fromMailUser;
 		this.recipientTo = recipientTo; 
@@ -63,7 +69,7 @@ public class MailSender extends Authenticator implements IOutputChannel<IMailMes
 		authentication = new PasswordAuthentication(fromMailUser, pswd);
 		session = Session.getInstance(props, this);
 	}
-	public MailSender(Properties props, String recipientTo){
+	private MailSender(Properties props, String recipientTo){
 		this(new Properties());
 		this.fromMailUser = props.getProperty("mail.user", "noUserDefined");
 		this.recipientTo = recipientTo; 

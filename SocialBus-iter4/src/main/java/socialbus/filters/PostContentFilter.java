@@ -1,11 +1,13 @@
 package socialbus.filters;
 
+import naivecontainer.Named;
+
 import com.restfb.types.Post;
 
 public class PostContentFilter extends AbstractPostFilter{
 	private final String keyword;
 
-	public PostContentFilter (String keyword) {
+	public PostContentFilter (@Named("FilterKeyword") String keyword) {
 		super();
 		this.keyword = keyword.toLowerCase();
 	}

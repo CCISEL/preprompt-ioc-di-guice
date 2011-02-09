@@ -10,10 +10,10 @@ public class SimpleConfiguration implements InjectorConfiguration {
 	
 	@Override
 	public final void configure(Injector injector) {
+		configure();
 		for(Binding<?> b : _bindings){
 			injector.addBinding(b);
 		}
-		configure();
 	}
 	/**
 	 * Hook method. It should be abstract, but we keep it

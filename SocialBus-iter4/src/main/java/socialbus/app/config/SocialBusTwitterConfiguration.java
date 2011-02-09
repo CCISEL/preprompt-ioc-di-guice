@@ -2,7 +2,6 @@ package socialbus.app.config;
 
 import socialbus.channel.fb.FbPostsReader;
 import socialbus.channel.fb.NamedDefaultFacebookClient;
-import socialbus.channel.mail.MailSender;
 import socialbus.channel.twitter.StatusSetter;
 import socialbus.core.IFilter;
 import socialbus.core.IInputChannel;
@@ -13,10 +12,9 @@ import socialbus.projection.PostToTwitterStatus;
 
 import com.restfb.FacebookClient;
 
-import naivecontainer.Named;
 import naivecontainer.SimpleConfiguration;
 
-public class SocialBusEmailConfiguration extends SimpleConfiguration{
+public class SocialBusTwitterConfiguration extends SimpleConfiguration{
 	@Override
 	protected void configure() {
 		//
@@ -30,11 +28,10 @@ public class SocialBusEmailConfiguration extends SimpleConfiguration{
 		//
 		// IOutputChannel
 		//
-		bind(IOutputChannel.class).to(MailSender.class);
-		bind(String.class).withName("MailUser").to("greatwacky@gmail.com"); 
-		bind(String.class).withName("MailPasswd").to("preprompt123"); 
-		bind(String.class).withName("MailHost").to("smtp.gmail.com"); 
-		bind(String.class).withName("MailRecipientTo").to("mcarvalho@cc.isel.ipl.pt");
+		bind(IOutputChannel.class).to(StatusSetter.class);
+		bind(String.class).withName("TwitterAccount").to("greatwacky"); 
+		bind(String.class).withName("ConsumerKey").to("FImbe0979Sowdv4cJgNJjg"); 
+		bind(String.class).withName("ConsumerSecret").to("gx4xCzXSxAcIQQpcms5Gnu6gA3HDJj4hqAofsdkfTo"); 
 		//
 		// IFilter
 		//

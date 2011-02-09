@@ -1,5 +1,6 @@
 package socialbus.channel.twitter;
 
+import naivecontainer.Named;
 import socialbus.core.IOutputChannel;
 import socialbus.core.OutputChannelException;
 import winterwell.jtwitter.OAuthSignpostClient;
@@ -10,7 +11,10 @@ public class StatusSetter implements IOutputChannel<String>{
 	private final String twitterAccount;
 	private final String consumerKey;
 	private final String consumerSecret;
-	public StatusSetter(String twitterAccount, String consumerKey, String consumerSecret) {
+	public StatusSetter(
+			@Named("TwitterAccount") String twitterAccount, 
+			@Named("ConsumerKey") String consumerKey, 
+			@Named("ConsumerSecret") String consumerSecret) {
 		this.twitterAccount = twitterAccount;
 		this.consumerKey = consumerKey;
 		this.consumerSecret = consumerSecret;
