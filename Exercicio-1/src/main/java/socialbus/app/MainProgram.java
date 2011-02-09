@@ -10,12 +10,11 @@ public class MainProgram {
 		ExecutorService threadPool = Executors.newCachedThreadPool();
 		SocialParserNotifier social = new SocialParserNotifier(
 				5000, 
-				"100002002677659", //Facebook ID - UID
-				// Facebook Access Token 
-				"2227470867|2.1kDKGi69NbGVs0_9EpVq0g__.3600.1297116000-100002002677659|SypT3k6fhVL9shDWZhGJzPsnMFs",
+				"...",  //Facebook ID - UID
+				"...",  // Facebook Access Token
 				"home", // Facebook end point
-				"...", // user login
-				"...", 		// user password
+				"...",  // user login
+				"...", 	// user password
 				"smtp.gmail.com",		// Email SMTP host
 				"prompt.guice@gmail.com"); // // Message To recipient);
 		social.run(360000);
