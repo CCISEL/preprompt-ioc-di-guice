@@ -10,9 +10,8 @@ public class MainProgram {
 		ExecutorService threadPool = Executors.newCachedThreadPool();
 		SocialParserNotifier social = new SocialParserNotifier(
 				5000, 
-				"...", //Facebook ID - UID
-				// Facebook Access Token 
-				"...",
+				"...",  //Facebook ID - UID
+				"...",  // Facebook Access Token
 				"home", // Facebook end point
 				"...",  // user login
 				"...", 	// user password

@@ -32,9 +32,9 @@
 
 11. Corra os testes unitários clicando sobre o package `socialbus.tests` e fazendo *Run As > JUnit Test*.
 
-### 2ª parte - Configuração da aplicação SocialBus
+### 2ª parte - Dados do Facebook
 
-Nesta fase deverá obter alguns dados para configuração do canal de input - Facebook - e de output - EMail (preferencialmente Gmail).
+Nesta fase deverá obter alguns dados para configuração do canal de input - Facebook.
 
 1. Entre na página do Facebook com a sua conta.
 
@@ -51,4 +51,25 @@ Nesta fase deverá obter alguns dados para configuração do canal de input - Fa
 7. Da página obtida pode extrair os seguintes dados:
    > * Na segunda linha em "id" obtém o seu **Uid**.
    > * Do URL "https://graph.facebook.com/me?access_token=....." pode extrair o *access token* que aparece à frente de `me?access_token=`.
+
+
+### 3ª parte - SocialBus
+
+Agora irá usar os dados obtidos na 2ª parte, para configuração do canal de input - Facebook. Também terá de configurar o canal de output - EMail (preferencialmente Gmail).
+
+1. Abra o código fonte da classe `socialbus.app.MainProgram`.
+
+2. Configure o *Uid* e *Access Token* obtidos na 2ª parte.
+
+3. Configure o endereço da sua conta de EMail e password. Este será o remetente das mensagens enviadas com posts recolhidos do Facebook. Se a sua conta não for GMail, actualize também o SMTP host.
+
+4. Execute o programa. Neste momento ele está configurado para filtrar mensagens que contenham a palavra "Portugal". 
+
+5. Consulte a sua página do Facebook e identifique palavras chave comuns a vários posts. Altere a configuração do filtro usado por `socialbus.core.SocialParserNotifier` de modo a verificar o envio de emails referentes a outros posts.
+
+6. Pretende-se alterar a aplicação `socialbus.core.SocialParserNotifier` de modo a que no lugar de Emails passe a enviar *twitts* na conta *greatwacky*. Para tal: 
+  > * baseando-se na aplicação `javatwitter.app.TestTwitter` implemente um novo canal de output que coloque *twitts*  na conta *greatwacky*
+  > * Implemente uma projecção - `IProjection` - que transforme Posts do Facebook numa String que não exceda os 140 caracteres permitidos nas mensagens do Twitter.
+
+7. Desenhe um teste unitário para a classe `socialbus.channel.fb.FbPostReader` que verifique aleitura correcta de novos posts, sem repetir posts que já tenham sido retornados anteriormente.
 
