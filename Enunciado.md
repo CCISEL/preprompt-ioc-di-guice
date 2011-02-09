@@ -10,4 +10,13 @@
 
 4. Abra o Eclipse e forneça a pasta da alínea anterior como localização do workspace.
 
-5. Adicione um novo projecto Eclipse fazendo: **File -> New -> Project**
+5. Adicione um novo projecto Eclipse fazendo: **File > New > Project**
+
+6. No wizard selecione: **Java Project from Existing Ant Buildfile**
+
+7. Forneça os seguintes dados: 
+   > * *Project name*: SocialBus-Main-iter1
+   > * *Ant buildfile*: o ficheiro `Exercicio-1\build.xml`
+   > * *Select javac declaration to use to define project* - selecionar o item: "javac" task to found in target "compile-main".
+   
+8. Adicione um 2ª projecto ao Eclipse repetindo os passos anteriores:
